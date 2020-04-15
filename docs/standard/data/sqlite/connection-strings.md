@@ -17,17 +17,17 @@ Se utiliza una cadena de conexión para especificar cómo conectarse a la base d
 
 Las siguientes palabras clave de cadena de conexión se pueden utilizar con Microsoft.Data.Sqlite:
 
-### <a name="data-source"></a>Origen de datos
+### <a name="data-source"></a>Data Source
 
 Ruta de acceso al archivo de base de datos. *DataSource* (sin espacio) y *Filename* son alias de esta palabra clave.
 
-SQLite trata las rutas de acceso relativas al directorio de trabajo actual. También se pueden especificar rutas absolutas.
+SQLite trata las rutas de acceso como relativas al directorio de trabajo actual. También se pueden especificar rutas absolutas.
 
 Si **está vacío**, SQLite crea una base de datos temporal en disco que se elimina cuando se cierra la conexión.
 
 Si `:memory:`, se utiliza una base de datos en memoria. Para obtener más información, consulte [Bases de datos en memoria](in-memory-databases.md).
 
-Las rutas de `|DataDirectory|` acceso que comienzan con la cadena de sustitución se tratan igual que las rutas relativas. Si se establece, las rutas de acceso se realizan en relación con el valor de propiedad de dominio de aplicación DataDirectory.
+Las rutas de acceso que comienzan con la cadena de sustitución `|DataDirectory|` se tratan igual que las rutas relativas. Si se establece, las rutas de acceso se toman como relativas al valor de la propiedad del dominio de aplicación DataDirectory.
 
 Esta palabra clave también admite [nombres de archivo URI](https://www.sqlite.org/uri.html).
 
@@ -52,14 +52,14 @@ El modo de almacenamiento en caché utilizado por la conexión.
 | Privada | Cada conexión utiliza una memoria caché privada.                                                          |
 | Compartido  | Las conexiones comparten una memoria caché. Este modo puede cambiar el comportamiento del bloqueo de transacciones y tablas. |
 
-### <a name="password"></a>Contraseña
+### <a name="password"></a>Password
 
-La clave de cifrado. Cuando se `PRAGMA key` especifica, se envía inmediatamente después de abrir la conexión.
+La clave de cifrado. Cuando se especifica, se envía `PRAGMA key` inmediatamente después de abrir la conexión.
 
 > [!WARNING]
 > La contraseña no tiene ningún efecto cuando la biblioteca SQLite nativa no admite el cifrado.
 
-### <a name="foreign-keys"></a>Claves externas
+### <a name="foreign-keys"></a>Foreign Keys
 
 Valor que indica si se deben habilitar las restricciones de clave externa.
 
@@ -69,9 +69,9 @@ Valor que indica si se deben habilitar las restricciones de clave externa.
 | False   | Envía `PRAGMA foreign_keys = 0` inmediatamente después de abrir la conexión.
 | (vacío) | No envía `PRAGMA foreign_keys`. Este es el valor predeterminado. |
 
-No es necesario habilitar claves externas si, como en e_sqlite3, SQLITE_DEFAULT_FOREIGN_KEYS se usó para compilar la biblioteca SQLite nativa.
+No es necesario habilitar claves externas si, como en e_sqlite3, se usó SQLITE_DEFAULT_FOREIGN_KEYS para compilar la biblioteca SQLite nativa.
 
-### <a name="recursive-triggers"></a>Desencadenantes recursivos
+### <a name="recursive-triggers"></a>Recursive triggers
 
 Valor que indica si se deben habilitar desencadenadores recursivos.
 
@@ -82,7 +82,7 @@ Valor que indica si se deben habilitar desencadenadores recursivos.
 
 ## <a name="connection-string-builder"></a>Creador de cadenas de conexión
 
-Puede utilizarcomo <xref:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder> una forma fuertemente tipada de crear cadenas de conexión. También se puede utilizar para evitar ataques de inyección de cadenas de conexión.
+Puede utilizar <xref:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder> como una forma fuertemente tipada de crear cadenas de conexión. También se puede utilizar para evitar ataques de inyección de cadenas de conexión.
 
 [!code-csharp[](../../../../samples/snippets/standard/data/sqlite/EncryptionSample/Program.cs?name=snippet_ConnectionStringBuilder)]
 
@@ -120,9 +120,9 @@ Una base de datos privada en memoria.
 Data Source=:memory:
 ```
 
-### <a name="sharable-in-memory"></a>Apoderable en memoria
+### <a name="sharable-in-memory"></a>Compartible en memoria
 
-Una base de datos en memoria que se puede que se pueda hacer de forma personal identificada con el nombre *Sharable*.
+Una base de datos compartible, en memoria, identificada con el nombre *Sharable*.
 
 ```ConnectionString
 Data Source=Sharable;Mode=Memory;Cache=Shared
